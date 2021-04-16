@@ -1,5 +1,5 @@
-from player import Player
-from deathtypes import deathtypes
+from .player import Player
+from utils.deathtypes import deathtypes
 
 class Match:
 
@@ -24,6 +24,7 @@ class Match:
         if player_id in self.players.keys():
             self.players[player_id].frags = self.players[player_id].frags + score
 
+
     def increase_player_deaths(self, player_id): 
         if player_id in self.players.keys():
             self.players[player_id].increase_deaths()
@@ -41,20 +42,15 @@ class Match:
     def increment_total_kills(self):
         self._total_kills += 1
 
+
     @property
     def total_kills(self):
         return self._total_kills
 
+
     @property
     def deaths_by_type(self):
         return self._deaths_by_type
-
-    """
-    def get_results(self):
-        print('Players: ', self.players)
-        print('Deaths by type: ', self.deaths_by_type)
-        print('Total Kills: ', self.total_kills)
-    """
 
 
     def get_players_amount(self):

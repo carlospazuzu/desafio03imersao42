@@ -1,5 +1,6 @@
 import os
-import webbrowser
+
+from utils.html_snippets import HEAD, LOGO, THEAD
 
 class ReportGenerator:
 
@@ -8,37 +9,10 @@ class ReportGenerator:
 
     def generate(self, matches_info):
         file = open('index.html', 'w')
-        file.write('<!DOCTYPE html>\n')
-        file.write('<html lang="en">\n')
-        file.write('<head>\n')
-        file.write('<meta charset="UTF-8">\n')
-        file.write('<title>Quake Log Results</title>\n')
-        file.write('''
-                        <style>\n
-                            h3 {\n
-                                text-align: center;\n
-                            }\n
-                                \n
-                            .gameLogo {\n
-                                margin: 0 auto;\n
-                                text-align: center;v
-                                margin: 10px;\n
-                            }\n
-                        </style>\n
-                   '''
-        )
-        file.write('<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />')
-        file.write('</head>\n')
+        file.write(HEAD)
         file.write('<body>\n')
         file.write('<div class="container">\n')
-        file.write('''
-                        <div class="row">\n
-                            <div class="gameLogo">\n
-                                <img width="35%" src="https://images.launchbox-app.com/c40ede74-dcb7-4f81-b197-967e3599df16.png" alt="">\n
-                            </div>\n
-                        </div>\n
-                   '''
-                   )
+        file.write(LOGO)
         count = 0
         for match in matches_info:
             count += 1
@@ -46,16 +20,7 @@ class ReportGenerator:
             file.write('<div class="row">')
             file.write('<h3>Match #' + str(count) + ' Results</h3>')
             file.write('<table class="u-full-width">')
-            file.write('''
-                            <thead>
-                                <tr>
-                                    <th>Player Name</th>
-                                    <th>Kills</th>
-                                    <th>Deaths</th>
-                                    <th>WR</th>
-                                </tr>
-                            </thead>
-                       ''')
+            file.write(THEAD)
             file.write('<tbody>')            
             for player_id, player_data in sorted(match.players.items(), key = lambda kv: kv[1].frags, reverse=True):
                 file.write('<tr>')
@@ -85,5 +50,5 @@ class ReportGenerator:
         file.write('</html>\n')
         file.close()
 
-        os.system('python3 -m http.server')
-        webbrowser.open('http://0.0.0.0:8000')
+        os.system('echo Please open your browse into the address http://localhost:8000')
+        os.system('python3 -m http.server')        

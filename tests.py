@@ -1,8 +1,8 @@
 import unittest
 
-from player import Player
-from match import Match
-from deathtypes import deathtypes
+from entities.player import Player
+from entities.match import Match
+from utils.deathtypes import deathtypes
 
 class TestPlayerClass(unittest.TestCase):
 

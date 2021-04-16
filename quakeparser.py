@@ -1,6 +1,6 @@
 import sys
 
-from orchestrator import Orchestrator
+from factories.orchestrator import Orchestrator
 
 def main(filename):
     orchestrator = Orchestrator()
